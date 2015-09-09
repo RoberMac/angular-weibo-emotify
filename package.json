@@ -1,0 +1,35 @@
+{
+  "name": "angular-weibo-emotify",
+  "version": "0.0.1",
+  "description": "Angular directive and service to emotify weibo text",
+  "main": "dist/angular-weibo-emotify.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RoberMac/angular-weibo-emotify.git"
+  },
+  "keywords": [
+    "weibo",
+    "emotify",
+    "emotions"
+  ],
+  "author": {
+    "name": "RoberTu",
+    "email": "robertu0717@gmail.com",
+    "url": "https://github.com/RoberMac"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RoberMac/angular-weibo-emotify/issues"
+  },
+  "homepage": "https://github.com/RoberMac/angular-weibo-emotify",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.4.0",
+    "gulp-watch": "^4.3.5"
+  }
+}
