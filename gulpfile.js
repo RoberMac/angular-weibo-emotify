@@ -1,4 +1,5 @@
 var gulp       = require('gulp'),
+    plumber    = require('gulp-plumber'),
     concat     = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     uglify     = require('gulp-uglify'),
@@ -7,7 +8,7 @@ var gulp       = require('gulp'),
 
 var paths = {
     js: ['dist/angular-weibo-emotify.js'],
-    json: ['dist/emotions_lists.json']
+    json: ['dist/emotions_v1.json']
 };
 
 
@@ -15,6 +16,7 @@ var paths = {
 gulp.task('js', function() {
 
     return gulp.src(paths.js)
+        .pipe(plumber())
         .pipe(sourcemaps.init())
             .pipe(uglify({preserveComments: 'some'}))
             .pipe(concat('angular-weibo-emotify.min.js'))
@@ -26,7 +28,7 @@ gulp.task('js', function() {
 gulp.task('json', function () {
     return gulp.src(paths.json)
         .pipe(jsonminify())
-        .pipe(concat('emotions_lists.min.js'))
+        .pipe(concat('emotions_v1.min.json'))
         .pipe(gulp.dest('dist'));
 });
 

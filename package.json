@@ -1,6 +1,6 @@
 {
   "name": "angular-weibo-emotify",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Angular directive and service to emotify weibo text",
   "main": "dist/angular-weibo-emotify.min.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-jsonminify": "^1.0.0",
+    "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.0",
     "gulp-watch": "^4.3.5"
