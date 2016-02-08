@@ -11,10 +11,12 @@ npm install angular-weibo-emotify
 
 ## Usage
 
-Inject module into your application
-
+Inject module and set Emotions ([Download](https://raw.githubusercontent.com/RoberMac/angular-weibo-emotify/master/dist/emotions_v2.min.json)) URL
 ```javascript
-angular.module('YourApp', ['weibo-emotify']);
+angular.module('YourApp', ['weibo-emotify'])
+.config(['weiboEmotifyProvider', function (weiboEmotifyProvider){
+    weiboEmotifyProvider.setEmotionsURL('https://example.com/emotions_v2.min.json')
+}])
 ```
 
 Use as [Directive](https://docs.angularjs.org/guide/directive)
@@ -38,18 +40,6 @@ angular.module('someModule').controller('SomeCtrl', function ($scope, weiboEmoti
 
 });
 
-```
-
-### Load `emotions_list` file
-The `emotions_list` file is loaded from [GitHub](https://raw.githubusercontent.com/RoberMac/angular-weibo-emotify/master/dist/emotions_v1.min.json) and store it locally.
-
-You can customize the URL: 
-
-```javascript
-angular.module('YourApp', ['weibo-emotify'])
-.config(['weiboEmotifyProvider', function (weiboEmotifyProvider){
-    weiboEmotifyProvider.setEmotionsURL('https://example.com/emotions_v1.json')
-}])
 ```
 
 ## License

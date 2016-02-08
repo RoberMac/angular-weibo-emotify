@@ -4,41 +4,42 @@
  *
  * Copyright (c) 2015 RoberTu <robertu0717@gmail.com>
  * @license MIT
- * @version v0.2.0
+ * @version v0.3.0
  */
 
 angular.module('weibo-emotify', [])
 .provider('weiboEmotify', function (){
-
-    this.emotionsURL = 'https://raw.githubusercontent.com/RoberMac/angular-weibo-emotify/master/dist/emotions_v1.min.json'
 
     this.setEmotionsURL = function (url){
         this.emotionsURL = url
     }
 
     this.$get = ['$window', '$http', '$q', function($window, $http, $q){
+        if (!this.emotionsURL) {
+            throw new Error('`emotionsURL` is required')
+        }
+
         var ls = $window.localStorage;
         var emotions_list = ls && JSON.parse(ls.getItem('weiboEmotions'));
         var emotionsURL = this.emotionsURL;
 
         return $q(function (resolve, reject){
-            if (!emotions_list || emotions_list['_v'] !== '1.0'){
+            if (!emotions_list || emotions_list['_v'] !== '2.0'){
                 $http.get(emotionsURL)
                 .success(function (data){
 
-                    if (Object.prototype.toString.call(data) === '[object Object]'){
-
-                        if (data['_v'] === '1.0'){
-                            ls && ls.setItem('weiboEmotions', JSON.stringify(data))
-                            emotions_list = data
-                            resolve()
-                        } else {
-                            reject('`emotions_list` is not v1.0')
-                        }   
-
-                    } else {
+                    if (Object.prototype.toString.call(data) !== '[object Object]') {
                         reject('`emotions_list` is not a Object')
+                        return;
                     }
+                    if (data['_v'] !== '2.0') {
+                        reject('`emotions_list` is not v2.0')
+                        return;
+                    }
+
+                    ls && ls.setItem('weiboEmotions', JSON.stringify(data))
+                    emotions_list = data
+                    resolve()
                 })
                 .error(function (err){
                     reject(err)

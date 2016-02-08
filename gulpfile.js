@@ -1,21 +1,16 @@
-var gulp       = require('gulp'),
-    plumber    = require('gulp-plumber'),
-    concat     = require('gulp-concat'),
-    sourcemaps = require('gulp-sourcemaps'),
-    uglify     = require('gulp-uglify'),
-    jsonminify = require('gulp-jsonminify');
- 
+const path    = require('path');
+const gulp    = require('gulp');
+const plumber = require('gulp-plumber');
+const concat  = require('gulp-concat');
 
-var paths = {
-    js: ['dist/angular-weibo-emotify.js'],
-    json: ['dist/emotions_v1.json']
-};
-
+const ROOT_PATH = path.resolve(__dirname);
 
 // Minify JavaScript
+const uglify = require('gulp-uglify');
+const sourcemaps = require('gulp-sourcemaps');
+const NG_PATH = path.resolve(ROOT_PATH, 'src/angular-weibo-emotify.js');
 gulp.task('js', function() {
-
-    return gulp.src(paths.js)
+    return gulp.src(NG_PATH)
         .pipe(plumber())
         .pipe(sourcemaps.init())
             .pipe(uglify({preserveComments: 'some'}))
@@ -25,17 +20,19 @@ gulp.task('js', function() {
 });
 
 // Minify JSON
+const jsonminify = require('gulp-jsonminify');
+const EMOTIONS_PATH = path.resolve(ROOT_PATH, 'src/emotions_v2.json');
 gulp.task('json', function () {
-    return gulp.src(paths.json)
+    return gulp.src(EMOTIONS_PATH)
         .pipe(jsonminify())
-        .pipe(concat('emotions_v1.min.json'))
+        .pipe(concat('emotions_v2.min.json'))
         .pipe(gulp.dest('dist'));
 });
 
 // Rerun the task when a file changes 
 gulp.task('watch', function() {
-    gulp.watch(paths.js, ['js']);
-    gulp.watch(paths.json, ['json']);
+    gulp.watch(NG_PATH, ['js']);
+    gulp.watch(EMOTIONS_PATH, ['json']);
 });
 
 // The default task (called when you run `gulp` from cli) 

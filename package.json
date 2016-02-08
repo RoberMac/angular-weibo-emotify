@@ -1,6 +1,6 @@
 {
   "name": "angular-weibo-emotify",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Angular directive and service to emotify weibo text",
   "main": "dist/angular-weibo-emotify.min.js",
   "scripts": {
